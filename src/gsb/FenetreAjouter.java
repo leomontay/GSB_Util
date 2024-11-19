@@ -18,7 +18,7 @@ import java.sql.Connection;
 
 /**
  *
- * @author lmontay
+ * @author lmontay & mlefloch
  */
 public class FenetreAjouter extends javax.swing.JFrame {
     private AccesBdD accesBdD;
@@ -117,7 +117,7 @@ public class FenetreAjouter extends javax.swing.JFrame {
                                         .addGap(35, 35, 35)
                                         .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
+                                        .addGap(27, 27, 27)
                                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(95, Short.MAX_VALUE))
         );

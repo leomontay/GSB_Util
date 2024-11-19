@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  *
- * @author lmontay
+ * @author lmontay & mlefloch
  */
 public class Utilisateur {
     private String id;

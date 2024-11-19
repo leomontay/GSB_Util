@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author lmontay
+ * @author lmontay & mlefloch
  */
 public class UtilisateurDAO {
     private Connection connexion;

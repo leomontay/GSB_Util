@@ -6,7 +6,7 @@ package gsb;
 
 /**
  *
- * @author lmontay
+ * @author lmontay & mlefloch
  */
 public class Starter {
 

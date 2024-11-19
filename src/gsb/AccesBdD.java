@@ -10,9 +10,10 @@ import java.util.logging.Logger;
 import java.sql.Connection;
 
 /**
- * @author lmontay
+ * @author lmontay & mlefloch
  */
 public class AccesBdD {
+
     private final String dbURL = "jdbc:mysql://localhost:3306/gsb_frais";
     private final String username = "root";
     private final String password = "";
@@ -29,20 +30,14 @@ public class AccesBdD {
     public Connection getConnexion(){
         return this.connexion;
     }
-    
-    public ResultSet getLesUtilisateurs() {
-        ResultSet result = null;
-        String sql = "SELECT id, nom, prenom, login, adresse, cp , ville, dateEmbauche FROM utilisateur";
-        try {
-            PreparedStatement statement;
-            statement = connexion.prepareStatement(sql);
-            result = statement.executeQuery();
-        } catch (SQLException ex) {
-            Logger.getLogger(AccesBdD.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return result;
-    } 
-
+     
+    public ResultSet getLogin(String login, String motdepasse) throws SQLException {
+        String sql = "SELECT login, motdepasse FROM admin";
+        PreparedStatement statement = connexion.prepareStatement(sql);
+        statement.setString(1, login);
+        statement.setString(2, motdepasse);
+        return statement.executeQuery();
+    }
     
    /*public ResultSet getLeslivresUnEditeur(String editeur) {
         try {

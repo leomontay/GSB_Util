@@ -4,9 +4,11 @@
  */
 package gsb;
 
+import java.sql.Connection;
+
 /**
  *
- * @author lmontay
+ * @author lmontay & mlefloch
  */
 public class Admin {
     private int id;
