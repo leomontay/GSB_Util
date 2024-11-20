@@ -4,10 +4,8 @@
  */
 package gsb;
 
-import java.sql.Connection;
-
 /**
- *
+ * 
  * @author lmontay & mlefloch
  */
 public class Admin {

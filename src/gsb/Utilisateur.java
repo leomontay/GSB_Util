@@ -7,7 +7,7 @@ package gsb;
 import java.util.Date;
 
 /**
- *
+ * Class Utilisateur
  * @author lmontay & mlefloch
  */
 public class Utilisateur {

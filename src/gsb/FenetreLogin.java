@@ -4,7 +4,6 @@
  */
 package gsb;
 
-import com.mysql.jdbc.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
