@@ -4,7 +4,6 @@
  */
 package gsb;
 
-
 import java.awt.Color;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -221,7 +221,44 @@ public class FenetreConsulter extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAjouterActionPerformed
 
     private void jButtonModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModifierActionPerformed
-           
+        try {
+            for (int i = 0; i < tableUtilisateurs.getRowCount(); i++) {
+                String id = tableUtilisateurs.getValueAt(i, 0).toString();
+                String nom = tableUtilisateurs.getValueAt(i, 1).toString();
+                String prenom = tableUtilisateurs.getValueAt(i, 2).toString();
+                String login = tableUtilisateurs.getValueAt(i, 3).toString();
+                String adresse = tableUtilisateurs.getValueAt(i, 4).toString();
+                String cp = tableUtilisateurs.getValueAt(i, 5).toString();
+                String ville = tableUtilisateurs.getValueAt(i, 6).toString();
+                String dateEmbauche = tableUtilisateurs.getValueAt(i, 7).toString();
+
+                String sql = "UPDATE utilisateur SET nom = ?, prenom = ?, login = ?, adresse = ?, cp = ?, ville = ?, dateEmbauche = ? WHERE id = ?";
+                PreparedStatement statement = accesBdD.getConnexion().prepareStatement(sql);
+
+                statement.setString(1, nom);
+                statement.setString(2, prenom);
+                statement.setString(3, login);
+                statement.setString(4, adresse);
+                statement.setString(5, cp);
+                statement.setString(6, ville);
+
+                try {
+                    statement.setDate(7, java.sql.Date.valueOf(dateEmbauche));
+                } catch (IllegalArgumentException e) {
+                    JOptionPane.showMessageDialog(this, "Date invalide pour l'utilisateur avec ID : " + id, "Erreur de date", JOptionPane.ERROR_MESSAGE);
+                    continue; // Passer à la ligne suivante
+                }
+
+                statement.setString(8, id);
+
+                int rowsUpdated = statement.executeUpdate();
+            }
+
+            JOptionPane.showMessageDialog(this, "Mises à jour terminées avec succès !");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Erreur lors de la mise à jour des utilisateurs : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonModifierActionPerformed
 
     private void jTextRechercheFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextRechercheFocusGained

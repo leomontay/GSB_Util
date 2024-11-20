@@ -4,6 +4,13 @@
  */
 package gsb;
 
+import java.security.SecureRandom;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author lmontay & mlefloch
@@ -18,6 +25,23 @@ public class FenetreAjouter extends javax.swing.JFrame {
         this.accesBdD = new AccesBdD();
         utilDAO = new UtilisateurDAO(accesBdD.getConnexion());
         initComponents();
+    }
+    
+    private String genererLogin(String prenom, String nom) {
+        // Utilise la première lettre du prénom et le nom complet en minuscules
+        return (prenom.charAt(0) + nom).toLowerCase();
+    }
+
+    private String genererMotDePasse() {
+        // Génère un mot de passe aléatoire de 8 caractères
+        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*";
+        SecureRandom random = new SecureRandom();
+        StringBuilder motDePasse = new StringBuilder(8);
+        for (int i = 0; i < 8; i++) {
+            int index = random.nextInt(caracteres.length());
+            motDePasse.append(caracteres.charAt(index));
+        }
+        return motDePasse.toString();
     }
 
     /**
@@ -39,6 +63,7 @@ public class FenetreAjouter extends javax.swing.JFrame {
         jButtonAjouter = new javax.swing.JButton();
         jTextFieldDateEmbauche = new javax.swing.JTextField();
         jButtonRetour = new javax.swing.JButton();
+        jTextId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,6 +88,11 @@ public class FenetreAjouter extends javax.swing.JFrame {
         jTextFieldVille.setText("Ville : ");
 
         jButtonAjouter.setText("Ajouter");
+        jButtonAjouter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAjouterActionPerformed(evt);
+            }
+        });
 
         jTextFieldDateEmbauche.setText("Date d'embauche : ");
         jTextFieldDateEmbauche.addActionListener(new java.awt.event.ActionListener() {
@@ -98,25 +128,26 @@ public class FenetreAjouter extends javax.swing.JFrame {
                                     .addComponent(jTextFieldVille, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(48, 48, 48)
                                 .addComponent(jTextFieldPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(92, 92, 92)
-                                .addComponent(jButtonRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextFieldDateEmbauche, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(27, 27, 27)
-                                        .addComponent(jButtonAjouter, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))))))
+                            .addComponent(jTextId, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(jTextFieldDateEmbauche, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(95, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButtonRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonAjouter, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(187, 187, 187))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(jLabel1)
-                .addGap(36, 36, 36)
+                .addGap(2, 2, 2)
+                .addComponent(jTextId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -128,11 +159,11 @@ public class FenetreAjouter extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldVille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldDateEmbauche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonAjouter, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(67, Short.MAX_VALUE))
+                    .addComponent(jButtonAjouter, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -162,6 +193,44 @@ public class FenetreAjouter extends javax.swing.JFrame {
         FenetreMenu.setVisible(true);
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonRetourActionPerformed
+
+    private void jButtonAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjouterActionPerformed
+        String id = jTextId.getText();
+        String nom = jTextFieldNom.getText();
+        String prenom = jTextFieldPrenom.getText();
+        String adresse = jTextFieldAdresse.getText();
+        String codePostal = jTextFieldCodePostal.getText();
+        String ville = jTextFieldVille.getText();
+        String dateEmbauche = jTextFieldDateEmbauche.getText();
+
+        // Générer le login et le mot de passe
+        String login = genererLogin(prenom, nom);
+        String mdp = genererMotDePasse();
+
+        // Connexion à la base de données et insertion des données
+        try {
+            String sql = "INSERT INTO utilisateur (id, nom, prenom, login, mdp, adresse, cp, ville, dateEmbauche) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement stmt = accesBdD.getConnexion().prepareStatement(sql);
+
+            // Remplir les paramètres de la requête
+            stmt.setString(1, id);
+            stmt.setString(2, nom);
+            stmt.setString(3, prenom);
+            stmt.setString(4, login);
+            stmt.setString(5, mdp);
+            stmt.setString(6, adresse);
+            stmt.setString(7, codePostal);
+            stmt.setString(8, ville);
+            stmt.setString(9, dateEmbauche);
+
+            // Exécuter la requête
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Utilisateur ajouté avec succès !\nLogin: " + login + "\nMot de passe: " + mdp);
+        } catch (SQLException ex) {
+            Logger.getLogger(AccesBdD.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Erreur lors de l'ajout de l'utilisateur.");
+        }        
+    }//GEN-LAST:event_jButtonAjouterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,5 +278,6 @@ public class FenetreAjouter extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldNom;
     private javax.swing.JTextField jTextFieldPrenom;
     private javax.swing.JTextField jTextFieldVille;
+    private javax.swing.JTextField jTextId;
     // End of variables declaration//GEN-END:variables
 }
