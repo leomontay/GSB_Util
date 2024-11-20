@@ -32,7 +32,7 @@ public class AccesBdD {
     }
      
     public ResultSet getLogin(String login, String motdepasse) throws SQLException {
-        String sql = "SELECT login, motdepasse FROM admin";
+        String sql = "SELECT * FROM admin WHERE login = ? AND motdepasse = ?";
         PreparedStatement statement = connexion.prepareStatement(sql);
         statement.setString(1, login);
         statement.setString(2, motdepasse);
