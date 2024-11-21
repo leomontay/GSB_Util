@@ -70,6 +70,7 @@ public class FenetreConsulter extends javax.swing.JFrame {
         jButtonAjouter = new javax.swing.JButton();
         jButtonModifier = new javax.swing.JButton();
         jButtonRetour = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,14 +89,6 @@ public class FenetreConsulter extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tableUtilisateurs);
 
-        jTextRecherche.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextRechercheFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextRechercheFocusLost(evt);
-            }
-        });
         jTextRecherche.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextRechercheActionPerformed(evt);
@@ -123,16 +116,22 @@ public class FenetreConsulter extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLabel2.setText("Rechercher :");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextRecherche)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextRecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(1, 1, 1)
@@ -150,8 +149,10 @@ public class FenetreConsulter extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(jTextRecherche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextRecherche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -261,20 +262,6 @@ public class FenetreConsulter extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonModifierActionPerformed
 
-    private void jTextRechercheFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextRechercheFocusGained
-        if (jTextRecherche.getText().equals("Rechercher : ")) {
-        jTextRecherche.setText("");
-        jTextRecherche.setForeground(Color.BLACK );
-    }
-    }//GEN-LAST:event_jTextRechercheFocusGained
-
-    private void jTextRechercheFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextRechercheFocusLost
-        if (jTextRecherche.getText().isEmpty()) {
-        jTextRecherche.setText("Rechercher : ");
-        jTextRecherche.setForeground(Color.BLACK);
-    }
-    }//GEN-LAST:event_jTextRechercheFocusLost
-
     private void jButtonRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetourActionPerformed
         FenetreMenu FenetreMenu = new FenetreMenu();
         FenetreMenu.setVisible(true);
@@ -321,6 +308,7 @@ public class FenetreConsulter extends javax.swing.JFrame {
     private javax.swing.JButton jButtonModifier;
     private javax.swing.JButton jButtonRetour;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextRecherche;
