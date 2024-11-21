@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 
 /**
- * Utilisateur DAO
+ * Classe représentant .
  * @author lmontay & mlefloch
  */
 public class UtilisateurDAO {

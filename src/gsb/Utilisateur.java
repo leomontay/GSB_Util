@@ -7,7 +7,7 @@ package gsb;
 import java.util.Date;
 
 /**
- * Class Utilisateur
+ * Classe représentant les utilisateurs.
  * @author lmontay & mlefloch
  */
 public class Utilisateur {
@@ -20,6 +20,17 @@ public class Utilisateur {
     private String ville;
     private Date dateEmbauche;
 
+    /**
+     * Constructeur pour créer un utilisateur.
+     * @param id
+     * @param nom
+     * @param prenom
+     * @param login
+     * @param adresse
+     * @param cp
+     * @param ville
+     * @param dateEmbauche
+     */
     public Utilisateur(String id, String nom,String prenom, String login, String adresse, int cp, String ville, Date dateEmbauche) {
         this.id = id;
         this.nom = nom;
