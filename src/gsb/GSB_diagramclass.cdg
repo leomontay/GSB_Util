@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="GSB">
+  <ClassDiagramComponents>
+    <Class name="AccesBdD" package="gsb" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="dbURL" type="String" visibility="private" isFinal="true"/>
+        <Field name="username" type="String" visibility="private" isFinal="true"/>
+        <Field name="password" type="String" visibility="private" isFinal="true"/>
+        <Field name="connexion" type="Connection" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getConnexion" returnType="Connection" visibility="public"/>
+        <Method name="getLogin" returnType="ResultSet" visibility="public">
+          <Argument type="String" name="login"/>
+          <Argument type="String" name="motdepasse"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Admin" package="gsb" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="login" type="String" visibility="private"/>
+        <Field name="motdepasse" type="String" visibility="private"/>
+        <Field name="nom" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="login"/>
+          <Argument type="String" name="motdepasse"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="int" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getLogin" returnType="String" visibility="public"/>
+        <Method name="setLogin" returnType="void" visibility="public">
+          <Argument type="String" name="login"/>
+        </Method>
+        <Method name="getMotdepasse" returnType="String" visibility="public"/>
+        <Method name="setMotdepasse" returnType="void" visibility="public">
+          <Argument type="String" name="motdepasse"/>
+        </Method>
+        <Method name="getNom" returnType="String" visibility="public"/>
+        <Method name="setNom" returnType="void" visibility="public">
+          <Argument type="String" name="nom"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="FenetreAjouter" package="gsb" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="accesBdD" type="AccesBdD" visibility="private"/>
+        <Field name="utilDAO" type="UtilisateurDAO" visibility="private"/>
+        <Field name="jButtonAjouter" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButtonRetour" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel6" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel7" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel8" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel9" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jTextFieldAdresse" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jTextFieldCodePostal" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jTextFieldDateEmbauche" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jTextFieldNom" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jTextFieldPrenom" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jTextFieldVille" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jTextId" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="genererLogin" returnType="String" visibility="private">
+          <Argument type="String" name="prenom"/>
+          <Argument type="String" name="nom"/>
+        </Method>
+        <Method name="genererMotDePasse" returnType="String" visibility="private"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="jTextFieldNomActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jTextFieldDateEmbaucheActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButtonRetourActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButtonAjouterActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="FenetreConsulter" package="gsb" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="accesBdD" type="AccesBdD" visibility="private"/>
+        <Field name="utilDAO" type="UtilisateurDAO" visibility="private"/>
+        <Field name="jButtonAjouter" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButtonModifier" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButtonRetour" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jTextRecherche" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="tableUtilisateurs" type="javax.swing.JTable" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="listerUtilisateurs" returnType="void" visibility="private"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="jTextRechercheActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButtonAjouterActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButtonModifierActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButtonRetourActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="FenetreLogin" package="gsb" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="accesBdD" type="AccesBdD" visibility="private"/>
+        <Field name="jButtonFermer" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButtonValider" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLoginField" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jMdpField" type="javax.swing.JPasswordField" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="jButtonFermerActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jMdpFieldActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jLoginFieldActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButtonValiderActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="FenetreMenu" package="gsb" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="accesBdD" type="AccesBdD" visibility="private"/>
+        <Field name="jButtonAjouter" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButtonConsulter" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButtonFermer" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButtonModifier" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="jButtonFermerActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButtonConsulterActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButtonModifierActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButtonAjouterActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Starter" package="gsb" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Utilisateur" package="gsb" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="id" type="String" visibility="private"/>
+        <Field name="nom" type="String" visibility="private"/>
+        <Field name="prenom" type="String" visibility="private"/>
+        <Field name="login" type="String" visibility="private"/>
+        <Field name="adresse" type="String" visibility="private"/>
+        <Field name="cp" type="int" visibility="private"/>
+        <Field name="ville" type="String" visibility="private"/>
+        <Field name="dateEmbauche" type="Date" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="id"/>
+          <Argument type="String" name="nom"/>
+          <Argument type="String" name="prenom"/>
+          <Argument type="String" name="login"/>
+          <Argument type="String" name="adresse"/>
+          <Argument type="int" name="cp"/>
+          <Argument type="String" name="ville"/>
+          <Argument type="Date" name="dateEmbauche"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="String" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="String" name="id"/>
+        </Method>
+        <Method name="getNom" returnType="String" visibility="public"/>
+        <Method name="setNom" returnType="void" visibility="public">
+          <Argument type="String" name="nom"/>
+        </Method>
+        <Method name="getPrenom" returnType="String" visibility="public"/>
+        <Method name="setPrenom" returnType="void" visibility="public">
+          <Argument type="String" name="prenom"/>
+        </Method>
+        <Method name="getLogin" returnType="String" visibility="public"/>
+        <Method name="setLogin" returnType="void" visibility="public">
+          <Argument type="String" name="login"/>
+        </Method>
+        <Method name="getAdresse" returnType="String" visibility="public"/>
+        <Method name="setAdresse" returnType="void" visibility="public">
+          <Argument type="String" name="adresse"/>
+        </Method>
+        <Method name="getCp" returnType="int" visibility="public"/>
+        <Method name="setCp" returnType="void" visibility="public">
+          <Argument type="int" name="cp"/>
+        </Method>
+        <Method name="getVille" returnType="String" visibility="public"/>
+        <Method name="setVille" returnType="void" visibility="public">
+          <Argument type="String" name="ville"/>
+        </Method>
+        <Method name="getDateEmbauche" returnType="Date" visibility="public"/>
+        <Method name="setDateEmbauche" returnType="void" visibility="public">
+          <Argument type="Date" name="dateEmbauche"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="UtilisateurDAO" package="gsb" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields>
+        <Field name="connexion" type="Connection" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Connection" name="connexion"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getLesUtilisateurs" returnType="ArrayList&lt;Utilisateur&gt;" visibility="public"/>
+        <Method name="BarreRecherche" returnType="ArrayList&lt;Utilisateur&gt;" visibility="public">
+          <Argument type="String" name="recherche"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="utilDAO" source="gsb.FenetreAjouter" target="gsb.UtilisateurDAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="accesBdD" source="gsb.FenetreAjouter" target="gsb.AccesBdD" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="accesBdD" source="gsb.FenetreConsulter" target="gsb.AccesBdD" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="gsb.UtilisateurDAO" target="gsb.Utilisateur" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="accesBdD" source="gsb.FenetreLogin" target="gsb.AccesBdD" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="accesBdD" source="gsb.FenetreMenu" target="gsb.AccesBdD" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="utilDAO" source="gsb.FenetreConsulter" target="gsb.UtilisateurDAO" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
