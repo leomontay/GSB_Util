@@ -9,13 +9,21 @@ import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 
 /**
- *
- * @author lmontay & mlefloch
+ * Fenêtre de connexion permettant à un administrateur de s’authentifier.
+ * 
+ * <p>Cette interface graphique utilise Swing pour afficher un formulaire de connexion.
+ * Elle interroge la base de données pour vérifier les identifiants saisis par l’utilisateur.</p>
+ * 
+ * <p>En cas de succès, elle redirige vers {@link FenetreMenu}, sinon elle affiche un message d’erreur.</p>
+ * 
+ * @author lmontay
+ * @author mlefloch
  */
 public class FenetreLogin extends javax.swing.JFrame {
     private AccesBdD accesBdD;
-    /**
-     * Creates new form FenetreLogin
+    
+     /**
+     * Constructeur. Initialise la connexion à la base de données et les composants Swing.
      */
     public FenetreLogin() {
         this.accesBdD = new AccesBdD();
@@ -144,6 +152,12 @@ public class FenetreLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+     /**
+     * Action déclenchée lorsqu'on clique sur le bouton "Fermer".
+     * Affiche un message d’au revoir et quitte l’application.
+     * 
+     * @param evt Événement déclenché par le bouton "Fermer"
+     */
     private void jButtonFermerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFermerActionPerformed
         JOptionPane.showMessageDialog(this, "Au revoir !");
         System.exit(0); 
@@ -157,6 +171,14 @@ public class FenetreLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLoginFieldActionPerformed
 
+    /**
+     * Action déclenchée lorsqu'on clique sur le bouton "Valider".
+     * Vérifie le login et le mot de passe saisis auprès de la base de données.
+     * En cas de succès, affiche un message de bienvenue et ouvre le menu principal.
+     * Sinon, un message d'erreur est affiché.
+     * 
+     * @param evt Événement déclenché par le bouton "Valider"
+     */
     private void jButtonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValiderActionPerformed
         String login = jLoginField.getText(); // Récupérer le login saisi
         String motdepasse = new String(jMdpField.getPassword()); // Récupérer le mot de passe saisi

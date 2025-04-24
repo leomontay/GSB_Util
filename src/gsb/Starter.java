@@ -5,12 +5,26 @@
 package gsb;
 
 /**
- * Class Starter
- * @author lmontay & mlefloch
+ * Classe principale de l'application permettant de lancer l'interface graphique.
+ * 
+ * <p>Elle initialise le thème graphique ("Nimbus" si disponible) et affiche la
+ * fenêtre de connexion {@link FenetreLogin} au démarrage.</p>
+ * 
+ * <p>Cette classe contient uniquement la méthode {@code main}, qui constitue
+ * le point d'entrée de l'application Java Swing.</p>
+ * 
+ * @author lmontay
+ * @author mlefloch
  */
 public class Starter {
-    /**
-     * @param args the command line arguments
+      /**
+     * Méthode principale de l'application.
+     * 
+     * <p>Configure l'apparence de l'interface graphique (look and feel)
+     * en utilisant "Nimbus" si celui-ci est disponible, puis affiche
+     * la fenêtre de connexion {@code FenetreLogin}.</p>
+     *
+     * @param args les arguments passés en ligne de commande (non utilisés ici)
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

@@ -14,14 +14,22 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author lmontay & mlefloch
+ * Fenêtre graphique permettant de consulter, rechercher, modifier et ajouter des utilisateurs.
+ * 
+ * <p>Cette classe utilise Swing pour l'affichage de la liste des utilisateurs dans un tableau.
+ * Elle se connecte à la base de données via {@link AccesBdD} et utilise {@link UtilisateurDAO}
+ * pour la récupération des données utilisateurs.</p>
+ * 
+ * @author lmontay
+ * @author mlefloch
  */
 public class FenetreConsulter extends javax.swing.JFrame {
     private AccesBdD accesBdD;
     private UtilisateurDAO utilDAO;
+    
     /**
-     * Creates new form FenetreConsulter
+     * Constructeur de la fenêtre. Initialise la connexion à la base de données,
+     * instancie le DAO, configure les composants graphiques et charge les utilisateurs.
      */
     public FenetreConsulter() {
         this.accesBdD = new AccesBdD();
@@ -30,6 +38,9 @@ public class FenetreConsulter extends javax.swing.JFrame {
         listerUtilisateurs();
     }
     
+     /**
+     * Récupère tous les utilisateurs de la base de données et les affiche dans le tableau.
+     */
     private void listerUtilisateurs(){
         ArrayList<Utilisateur> util = utilDAO.getLesUtilisateurs(); 
         DefaultTableModel tableModel = (DefaultTableModel)tableUtilisateurs.getModel();
@@ -179,6 +190,12 @@ public class FenetreConsulter extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Effectue une recherche dans la base de données à partir du champ de recherche
+     * et affiche les résultats dans le tableau.
+     * 
+     * @param evt Événement déclenché lors de la validation du champ de recherche
+     */
     private void jTextRechercheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextRechercheActionPerformed
         String recherche = jTextRecherche.getText() + "%";
 
@@ -213,6 +230,11 @@ public class FenetreConsulter extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextRechercheActionPerformed
 
+     /**
+     * Ouvre la fenêtre d’ajout d’un nouvel utilisateur et ferme la fenêtre actuelle.
+     * 
+     * @param evt Événement déclenché lors du clic sur le bouton Ajouter
+     */
     private void jButtonAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjouterActionPerformed
         FenetreAjouter FenetreAjouter = new FenetreAjouter();
         FenetreAjouter.setVisible(true);
@@ -220,6 +242,12 @@ public class FenetreConsulter extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonAjouterActionPerformed
 
+     /**
+     * Met à jour les informations des utilisateurs affichés dans le tableau.
+     * Une confirmation est demandée à l'utilisateur avant de procéder.
+     * 
+     * @param evt Événement déclenché lors du clic sur le bouton Modifier
+     */
     private void jButtonModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModifierActionPerformed
         int confirmation = JOptionPane.showConfirmDialog(this, "Êtes-vous sûr de vouloir mettre à jour les informations de ces utilisateurs ?", "Confirmer la mise à jour", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
     
@@ -266,6 +294,11 @@ public class FenetreConsulter extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonModifierActionPerformed
 
+    /**
+     * Retourne à la fenêtre principale du menu et ferme la fenêtre actuelle.
+     * 
+     * @param evt Événement déclenché lors du clic sur le bouton Retour
+     */
     private void jButtonRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetourActionPerformed
         FenetreMenu FenetreMenu = new FenetreMenu();
         FenetreMenu.setVisible(true);

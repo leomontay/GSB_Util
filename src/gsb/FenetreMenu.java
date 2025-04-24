@@ -7,13 +7,20 @@ package gsb;
 import javax.swing.JOptionPane;
 
 /**
+ * Fenêtre principale du menu de navigation après authentification.
  *
- * @author lmontay & mlefloch
+ * <p>Permet à l'administrateur de naviguer vers les différentes fonctionnalités :
+ * consulter les utilisateurs, les modifier, ou en ajouter de nouveaux.
+ * Cette classe utilise Swing pour l’interface graphique.</p>
+ *
+ * @author lmontay 
+ * @author mlefloch
  */
 public class FenetreMenu extends javax.swing.JFrame {
     private AccesBdD accesBdD;
+    
     /**
-     * Creates new form menuVue
+     * Constructeur. Initialise la connexion à la base de données et les composants de la fenêtre.
      */
     public FenetreMenu() {
         this.accesBdD = new AccesBdD();
@@ -185,23 +192,47 @@ public class FenetreMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Action déclenchée lorsqu'on clique sur le bouton "Fermer".
+     * Affiche un message d’au revoir et quitte l’application.
+     *
+     * @param evt Événement déclenché par le bouton "Fermer"
+     */
     private void jButtonFermerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFermerActionPerformed
         JOptionPane.showMessageDialog(this, "Au revoir !");
         System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonFermerActionPerformed
 
+    /**
+     * Action déclenchée lorsqu'on clique sur le bouton "Consulter".
+     * Ouvre la fenêtre {@link FenetreConsulter} pour visualiser les utilisateurs.
+     *
+     * @param evt Événement déclenché par le bouton "Consulter"
+     */
     private void jButtonConsulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsulterActionPerformed
         FenetreConsulter FenetreConsulter = new FenetreConsulter();
         FenetreConsulter.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonConsulterActionPerformed
 
+    /**
+     * Action déclenchée lorsqu'on clique sur le bouton "Modifier".
+     * Ouvre la fenêtre {@link FenetreConsulter} en mode modification.
+     *
+     * @param evt Événement déclenché par le bouton "Modifier"
+     */
     private void jButtonModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModifierActionPerformed
         FenetreConsulter FenetreConsulter = new FenetreConsulter();
         FenetreConsulter.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonModifierActionPerformed
 
+    /**
+     * Action déclenchée lorsqu'on clique sur le bouton "Ajouter".
+     * Ouvre la fenêtre {@link FenetreAjouter} pour ajouter un nouvel utilisateur.
+     *
+     * @param evt Événement déclenché par le bouton "Ajouter"
+     */
     private void jButtonAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjouterActionPerformed
         FenetreAjouter FenetreAjouter = new FenetreAjouter();
         FenetreAjouter.setVisible(true);     

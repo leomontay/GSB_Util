@@ -13,28 +13,48 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author lmontay & mlefloch
+ * Fenêtre graphique permettant d'ajouter un nouvel utilisateur à la base de données.
+ * 
+ * <p>Cette classe étend {@link javax.swing.JFrame} et propose une interface utilisateur
+ * pour saisir les informations d'un nouvel utilisateur, générer automatiquement un login
+ * et un mot de passe, puis insérer les données dans la base via une requête SQL.</p>
+ * 
+ * <p>Elle utilise les classes {@code AccesBdD} pour la connexion à la base de données
+ * et {@code UtilisateurDAO} pour les opérations sur les utilisateurs.</p>
+ * 
+ * @author lmontay
+ * @author mlefloch
  */
 public class FenetreAjouter extends javax.swing.JFrame {
     private AccesBdD accesBdD;
     private UtilisateurDAO utilDAO;
     /**
-     * Creates new form FenetreAjouter
-     */
+    * Constructeur de la fenêtre d'ajout.
+    * <p>Initialise la connexion à la base de données, l'objet DAO et les composants graphiques.</p>
+    */
     public FenetreAjouter() {
         this.accesBdD = new AccesBdD();
         utilDAO = new UtilisateurDAO(accesBdD.getConnexion());
         initComponents();
     }
     
+    /**
+     * Génère automatiquement un login à partir du prénom et du nom.
+     * 
+     * @param prenom le prénom de l'utilisateur
+     * @param nom le nom de l'utilisateur
+     * @return une chaîne correspondant au login généré (ex : "jdupont" pour Jean Dupont)
+     */
     private String genererLogin(String prenom, String nom) {
-        // Utilise la première lettre du prénom et le nom complet en minuscules
         return (prenom.charAt(0) + nom).toLowerCase();
     }
 
+    /**
+     * Génère un mot de passe aléatoire de 8 caractères.
+     * 
+     * @return un mot de passe sécurisé composé de lettres, chiffres et caractères spéciaux
+     */
     private String genererMotDePasse() {
-        // Génère un mot de passe aléatoire de 8 caractères
         String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*";
         SecureRandom random = new SecureRandom();
         StringBuilder motDePasse = new StringBuilder(8);
@@ -251,12 +271,26 @@ public class FenetreAjouter extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldDateEmbaucheActionPerformed
 
+     /**
+     * Action déclenchée lors du clic sur le bouton "Retour".
+     * <p>Ouvre la fenêtre principale du menu et ferme la fenêtre actuelle.</p>
+     * 
+     * @param evt l'événement associé au clic
+     */
     private void jButtonRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetourActionPerformed
         FenetreMenu FenetreMenu = new FenetreMenu();
         FenetreMenu.setVisible(true);
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonRetourActionPerformed
 
+    /**
+     * Action déclenchée lors du clic sur le bouton "Ajouter".
+     * <p>Récupère les données saisies dans les champs, génère un login et un mot de passe,
+     * puis insère les informations dans la base de données. Affiche un message de succès
+     * ou une erreur en cas d'échec.</p>
+     * 
+     * @param evt l'événement associé au clic
+     */
     private void jButtonAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjouterActionPerformed
         String id = jTextId.getText();
         String nom = jTextFieldNom.getText();

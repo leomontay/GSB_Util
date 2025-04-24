@@ -16,16 +16,31 @@ import java.util.logging.Logger;
 
 
 /**
- * Classe représentant .
- * @author lmontay & mlefloch
+ * Classe permettant d'accéder aux données des utilisateurs dans la base de données.
+ * 
+ * <p>Cette classe propose des méthodes pour récupérer la liste des utilisateurs
+ * et effectuer une recherche par nom ou identifiant.</p>
+ * 
+ * @author lmontay
+ * @author mlefloch
  */
 public class UtilisateurDAO {
     private Connection connexion;
 
+    /**
+     * Constructeur de la classe UtilisateurDAO.
+     * 
+     * @param connexion la connexion à la base de données utilisée pour exécuter les requêtes
+     */
     public UtilisateurDAO(Connection connexion) {
         this.connexion = connexion;
     }
-  
+    
+    /**
+     * Récupère la liste de tous les utilisateurs présents dans la base de données.
+     * 
+     * @return une liste d'objets {@link Utilisateur} contenant les informations des utilisateurs
+     */
     public ArrayList<Utilisateur> getLesUtilisateurs() {
         ResultSet result = null;
         ArrayList<Utilisateur> listUtilisateur = new ArrayList<Utilisateur>();
@@ -44,6 +59,12 @@ public class UtilisateurDAO {
         return listUtilisateur;
     }
     
+    /**
+     * Effectue une recherche dans la base de données en fonction d'un critère (nom ou identifiant).
+     * 
+     * @param recherche le texte à rechercher (début du nom ou de l'identifiant)
+     * @return une liste d'objets {@link Utilisateur} correspondant au critère de recherche
+     */
     public ArrayList<Utilisateur> BarreRecherche(String recherche) {
         ArrayList<Utilisateur> tab = new ArrayList();
         try {
