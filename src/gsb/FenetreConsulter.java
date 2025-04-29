@@ -249,8 +249,7 @@ public class FenetreConsulter extends javax.swing.JFrame {
      * @param evt Événement déclenché lors du clic sur le bouton Modifier
      */
     private void jButtonModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModifierActionPerformed
-        int confirmation = JOptionPane.showConfirmDialog(this, "Êtes-vous sûr de vouloir mettre à jour les informations de ces utilisateurs ?", "Confirmer la mise à jour", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-    
+        int confirmation = JOptionPane.showConfirmDialog(this,"Êtes-vous sûr de vouloir mettre à jour les informations de ces utilisateurs ?", "Confirmer la mise à jour", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (confirmation == JOptionPane.YES_OPTION) {
             try {
                 for (int i = 0; i < tableUtilisateurs.getRowCount(); i++) {
@@ -262,35 +261,34 @@ public class FenetreConsulter extends javax.swing.JFrame {
                     String cp = tableUtilisateurs.getValueAt(i, 5).toString();
                     String ville = tableUtilisateurs.getValueAt(i, 6).toString();
                     String dateEmbauche = tableUtilisateurs.getValueAt(i, 7).toString();
-
                     String sql = "UPDATE utilisateur SET nom = ?, prenom = ?, login = ?, adresse = ?, cp = ?, ville = ?, dateEmbauche = ? WHERE id = ?";
-                    PreparedStatement statement = accesBdD.getConnexion().prepareStatement(sql);
-
-                    statement.setString(1, nom);
-                    statement.setString(2, prenom);
-                    statement.setString(3, login);
-                    statement.setString(4, adresse);
-                    statement.setString(5, cp);
-                    statement.setString(6, ville);
-
-                    try {
-                        statement.setDate(7, java.sql.Date.valueOf(dateEmbauche));
-                    } catch (IllegalArgumentException e) {
-                        JOptionPane.showMessageDialog(this, "Date invalide pour l'utilisateur avec ID : " + id, "Erreur de date", JOptionPane.ERROR_MESSAGE);
-                        continue;
+                    try (PreparedStatement statement = accesBdD.getConnexion().prepareStatement(sql)) {
+                        statement.setString(1, nom);
+                        statement.setString(2, prenom);
+                        statement.setString(3, login);
+                        statement.setString(4, adresse);
+                        statement.setString(5, cp);
+                        statement.setString(6, ville);
+                        try {
+                            statement.setDate(7, java.sql.Date.valueOf(dateEmbauche));
+                        } catch (IllegalArgumentException e) {
+                            JOptionPane.showMessageDialog(this, "Date invalide pour l'utilisateur avec ID : " + id, "Erreur de date", JOptionPane.ERROR_MESSAGE);
+                            continue;
+                        }
+                        statement.setString(8, id);
+                        int rowsUpdated = statement.executeUpdate();
+                        if (rowsUpdated == 0) {
+                            JOptionPane.showMessageDialog(this, "Aucune mise à jour pour l'utilisateur avec ID : " + id, "Information", JOptionPane.INFORMATION_MESSAGE);
+                        }
                     }
-
-                    statement.setString(8, id);
-
-                    int rowsUpdated = statement.executeUpdate();
-                    }
-                    JOptionPane.showMessageDialog(this, "Mises à jour terminées avec succès !");
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                    JOptionPane.showMessageDialog(this, "Erreur lors de la mise à jour des utilisateurs : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
-            } else {
-                JOptionPane.showMessageDialog(this, "La mise à jour a été annulée.", "Annulé", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Mises à jour terminées avec succès !");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Erreur lors de la mise à jour des utilisateurs : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "La mise à jour a été annulée.", "Annulé", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButtonModifierActionPerformed
 
